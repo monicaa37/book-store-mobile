@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:book_store/model/Item.dart';
+import 'package:book_store/models/Item.dart';
 import 'package:book_store/screens/item_list_page.dart';
 import 'package:book_store/widgets/item_card.dart';
 import 'package:book_store/widgets/left_drawer.dart';

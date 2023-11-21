@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:book_store/model/Item.dart'; // Pastikan import model item
+import 'package:book_store/models/Item.dart'; // Pastikan import model item
 import 'package:book_store/widgets/left_drawer.dart';
 
 class ItemListPage extends StatelessWidget {
