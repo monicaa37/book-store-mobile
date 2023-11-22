@@ -9,6 +9,7 @@ class MyHomePage extends StatelessWidget {
 
   final List<ShopItem> items = [
     ShopItem("Lihat Item", Icons.checklist, Color.fromARGB(255, 244, 163, 63)),
+    ShopItem("Daftar Produk", Icons.add_shopping_cart,Color.fromARGB(255, 239, 124, 191)),
     ShopItem("Tambah Item", Icons.add_shopping_cart, Colors.lightGreen),
     ShopItem("Logout", Icons.logout, Colors.lightBlue),
   ];
@@ -19,7 +20,7 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Center(
           child: Text(
-            'BOOK STORE',
+            'KAOS STORE',
             style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
           ),
         ),
@@ -38,7 +39,7 @@ class MyHomePage extends StatelessWidget {
                 padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
                 // Widget Text untuk menampilkan tulisan dengan alignment center dan style yang sesuai
                 child: Text(
-                  'Welcome to Book Store Bersama', // Text yang menandakan toko
+                  'Welcome to Kaos Store Bersama', // Text yang menandakan toko
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 30,

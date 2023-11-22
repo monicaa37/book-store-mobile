@@ -1,9 +1,12 @@
 import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:book_store/screens/menu.dart';
-import 'package:book_store/widgets/left_drawer.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
+import 'package:book_store/screens/item_list_page.dart';
+import 'package:book_store/screens/menu.dart';
+import 'package:book_store/widgets/left_drawer.dart';
+import 'package:book_store/models/item.dart';
 
 class AddItemForm extends StatefulWidget {
   const AddItemForm({super.key});
@@ -15,12 +18,13 @@ class AddItemForm extends StatefulWidget {
 class _AddItemState extends State<AddItemForm> {
   final _formKey = GlobalKey<FormState>();
   String _name = "";
+  int _price = 0;
   int _amount = 0;
   String _description = "";
 
   @override
   Widget build(BuildContext context) {
-     final request = context.watch<CookieRequest>();
+    final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
         title: const Center(
@@ -57,7 +61,29 @@ class _AddItemState extends State<AddItemForm> {
                   },
                   validator: (String? value) {
                     if (value == null || value.isEmpty) {
-                      return "Nama Tidak Boleh Kosong Bookers!";
+                      return "Nama Ga Boleh Kosong!";
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                      hintText: "Price Item",
+                      labelText: "Price Item",
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5))),
+                  // isi dari formnya
+                  onChanged: (String? value) {
+                    setState(() {
+                      _price = int.parse(value!);
+                    });
+                  },
+                  validator: (String? value) {
+                    if (value == null || value.isEmpty) {
+                      return "Price Ga Boleh Kosong!";
                     }
                     return null;
                   },
@@ -82,10 +108,10 @@ class _AddItemState extends State<AddItemForm> {
                   },
                   validator: (String? value) {
                     if (value == null || value.isEmpty) {
-                      return "Jumlah Item Tidak Boleh Kosong Bookers!";
+                      return "Jumlah Item Ga Boleh Kosong!";
                     }
                     if (int.tryParse(value) == null) {
-                      return "Jumlah Item Harus Berupa Bilangan Bookers!";
+                      return "Jumlah Item Harus Bilangan!";
                     }
                     return null;
                   },
@@ -108,7 +134,7 @@ class _AddItemState extends State<AddItemForm> {
                   },
                   validator: (String? value) {
                     if (value == null || value.isEmpty) {
-                      return "Deskripsi Tidak Boleh Kosong Bookers!";
+                      return "Deskripsi Ga Boleh Kosong!";
                     }
                     return null;
                   },
@@ -123,45 +149,51 @@ class _AddItemState extends State<AddItemForm> {
                       backgroundColor:
                           MaterialStateProperty.all(Colors.black87),
                     ),
-                  onPressed: () async {
+                    child: const Text(
+                      "Save",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    onPressed: () async {
                       if (_formKey.currentState!.validate()) {
-                          // Kirim ke Django dan tunggu respons
-                          // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
-                          final response = await request.postJson(
-                          "http://localhost:8000/create-flutter/",
-                          jsonEncode(<String, String>{
+                        // Kirim ke Django dan tunggu respons
+                        // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
+                        final response = await request.postJson(
+                            "http://localhost:8000/create-flutter/",
+                            jsonEncode(<String, String>{
                               'name': _name,
+                              'price': _price.toString(),
                               'amount': _amount.toString(),
                               'description': _description,
                               // TODO: Sesuaikan field data sesuai dengan aplikasimu
-                          }));
-                          if (response['status'] == 'success') {
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(const SnackBar(
-                              content: Text("Produk baru berhasil disimpan!"),
-                              ));
-                              Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(builder: (context) => MyHomePage()),
-                              );
-                          } else {
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(const SnackBar(
-                                  content:
-                                      Text("Terdapat kesalahan, silakan coba lagi."),
-                              ));
-                              }
-                            }
-                          },
-                          child: const Text(
-                          "Save",
-                          style: TextStyle(color: Colors.white),
-                    ),
+                            }));
+                        if (response['status'] == 'success') {
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content: Text("Item baru berhasil disimpan!"),
+                          ));
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => MyHomePage()),
+                          );
+                        } else {
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content:
+                                Text("Terdapat kesalahan, silakan coba lagi."),
+                          ));
+                        }
+                      }
+                    // Item content =  Item (_name,_price, _amount, _description);
+                    // Item.listItem.add(content);
+                    },
                   ),
                 ),
-              ),
-            ]),
+              )
+            ],
+          ),
         ),
-      ));
+      ),
+    );
   }
 }

@@ -1,8 +1,10 @@
-import 'package:book_store/screens/login.dart';
+import 'package:book_store/screens/list_product.dart';
 import 'package:flutter/material.dart';
-import 'package:book_store/screens/item_list_page.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
+import 'package:book_store/screens/item_list_page.dart';
+import 'package:book_store/screens/login.dart';
+import 'package:book_store/screens/menu.dart';
 import '../screens/add_item_form.dart';
 
 class ShopItem {
@@ -33,9 +35,12 @@ class ShopCard extends StatelessWidget {
           if (item.name == "Tambah Item") {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => const AddItemForm()));
-          } else if (item.name == "Lihat Item") {
+          }else if (item.name == "Lihat Item") {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const ItemListPage()));
+                MaterialPageRoute(builder: (context) => const ItemPage()));
+          }else if (item.name == "Daftar Produk") {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const ProductPage()));
           } else if (item.name == "Logout") {
         final response = await request.logout(
             // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!

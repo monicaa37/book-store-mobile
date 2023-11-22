@@ -12,7 +12,7 @@ class ProductPage extends StatefulWidget {
 }
 
 class _ProductPageState extends State<ProductPage> {
-Future<List<Product>> fetchProduct() async {
+Future<List<Item>> fetchProduct() async {
     // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
     var url = Uri.parse(
         'http://localhost:8000/json/');
@@ -25,10 +25,10 @@ Future<List<Product>> fetchProduct() async {
     var data = jsonDecode(utf8.decode(response.bodyBytes));
 
     // melakukan konversi data json menjadi object Product
-    List<Product> list_product = [];
+    List<Item> list_product = [];
     for (var d in data) {
         if (d != null) {
-            list_product.add(Product.fromJson(d));
+            list_product.add(Item.fromJson(d));
         }
     }
     return list_product;
@@ -78,6 +78,8 @@ Widget build(BuildContext context) {
                                     ),
                                     const SizedBox(height: 10),
                                     Text("${snapshot.data![index].fields.price}"),
+                                    const SizedBox(height: 10),
+                                    Text("${snapshot.data![index].fields.amount}"),
                                     const SizedBox(height: 10),
                                     Text(
                                         "${snapshot.data![index].fields.description}")

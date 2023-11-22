@@ -1,7 +1,9 @@
 import 'package:book_store/screens/menu.dart';
+import 'package:book_store/screens/menu.dart';
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
+
 
 void main() {
     runApp(const LoginApp());
@@ -24,6 +26,7 @@ Widget build(BuildContext context) {
 
 class LoginPage extends StatefulWidget {
     const LoginPage({super.key});
+    static String uname = "";
 
     @override
     _LoginPageState createState() => _LoginPageState();

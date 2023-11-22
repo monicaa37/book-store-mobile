@@ -67,7 +67,7 @@ class LeftDrawer extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const ItemListPage()));
+                      builder: (context) => const ItemPage()));
             },
           ),
           ListTile(
