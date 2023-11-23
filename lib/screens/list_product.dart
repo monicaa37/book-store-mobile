@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:book_store/models/product.dart';
+import 'package:book_store/screens/detail_product.dart';
 import 'package:book_store/widgets/left_drawer.dart';
 
 class ProductPage extends StatefulWidget {
@@ -61,13 +62,30 @@ Widget build(BuildContext context) {
                 } else {
                     return ListView.builder(
                         itemCount: snapshot.data!.length,
-                        itemBuilder: (_, index) => Container(
-                                margin: const EdgeInsets.symmetric(
-                                    horizontal: 16, vertical: 12),
-                                padding: const EdgeInsets.all(20.0),
-                                child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                        itemBuilder: (_, index) => InkWell(
+                          onTap: () {
+                            // Navigate ke detail page
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => DetailPage(
+                                  itemName: snapshot.data![index].fields.name,
+                                  price: snapshot.data![index].fields.price,
+                                  itemDescription: snapshot.data![index].fields.description,
+                                  itemAmount: snapshot.data![index].fields.amount,
+                                  // Pass more data if needed
+                                ),
+                              ),
+                            );
+                          },
+                              child: Container(
+                                      margin: const EdgeInsets.symmetric(
+                                          horizontal: 16, vertical: 12),
+                                      padding: const EdgeInsets.all(20.0),
+                                      child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+
                                 children: [
                                     Text(
                                     "${snapshot.data![index].fields.name}",
@@ -79,12 +97,11 @@ Widget build(BuildContext context) {
                                     const SizedBox(height: 10),
                                     Text("${snapshot.data![index].fields.price}"),
                                     const SizedBox(height: 10),
-                                    Text("${snapshot.data![index].fields.amount}"),
-                                    const SizedBox(height: 10),
                                     Text(
                                         "${snapshot.data![index].fields.description}")
                                 ],
                                 ),
+                              ),
                             ));
                     }
                 }
