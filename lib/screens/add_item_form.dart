@@ -1,12 +1,13 @@
 import 'dart:convert';
 
+import 'package:book_store/models/item.dart';
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
-import 'package:book_store/screens/item_list_page.dart';
 import 'package:book_store/screens/menu.dart';
 import 'package:book_store/widgets/left_drawer.dart';
-import 'package:book_store/models/item.dart';
+
+List<Item> productList = [];
 
 class AddItemForm extends StatefulWidget {
   const AddItemForm({super.key});
@@ -61,7 +62,7 @@ class _AddItemState extends State<AddItemForm> {
                   },
                   validator: (String? value) {
                     if (value == null || value.isEmpty) {
-                      return "Nama Ga Boleh Kosong!";
+                      return "Nama Tidak Boleh Kosong!";
                     }
                     return null;
                   },
@@ -83,7 +84,7 @@ class _AddItemState extends State<AddItemForm> {
                   },
                   validator: (String? value) {
                     if (value == null || value.isEmpty) {
-                      return "Price Ga Boleh Kosong!";
+                      return "Price Tidak Boleh Kosong!";
                     }
                     return null;
                   },
@@ -108,7 +109,7 @@ class _AddItemState extends State<AddItemForm> {
                   },
                   validator: (String? value) {
                     if (value == null || value.isEmpty) {
-                      return "Jumlah Item Ga Boleh Kosong!";
+                      return "Jumlah Item Tidak Boleh Kosong!";
                     }
                     if (int.tryParse(value) == null) {
                       return "Jumlah Item Harus Bilangan!";
@@ -134,7 +135,7 @@ class _AddItemState extends State<AddItemForm> {
                   },
                   validator: (String? value) {
                     if (value == null || value.isEmpty) {
-                      return "Deskripsi Ga Boleh Kosong!";
+                      return "Deskripsi Tidak Boleh Kosong!";
                     }
                     return null;
                   },
@@ -184,8 +185,6 @@ class _AddItemState extends State<AddItemForm> {
                           ));
                         }
                       }
-                    // Item content =  Item (_name,_price, _amount, _description);
-                    // Item.listItem.add(content);
                     },
                   ),
                 ),

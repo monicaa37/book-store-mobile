@@ -35,10 +35,13 @@ class ShopCard extends StatelessWidget {
           if (item.name == "Tambah Item") {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => const AddItemForm()));
-          }else if (item.name == "Lihat Item") {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const ItemPage()));
-          }else if (item.name == "Daftar Produk") {
+          }
+          // else if (item.name == "Lihat Item") {
+          //   Navigator.push(context,
+          //       MaterialPageRoute(builder: (context) => const ItemPage()));
+          // }
+          
+          else if (item.name == "Lihat Item") {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => const ProductPage()));
           } else if (item.name == "Logout") {

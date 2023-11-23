@@ -1,7 +1,6 @@
 import 'package:book_store/screens/list_product.dart';
 import 'package:flutter/material.dart';
 import 'package:book_store/screens/add_item_form.dart';
-import 'package:book_store/screens/item_list_page.dart';
 import 'package:book_store/screens/menu.dart';
 
 class LeftDrawer extends StatelessWidget {
@@ -17,7 +16,7 @@ class LeftDrawer extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  "This Is BookStore",
+                  "This Is KaosStore",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 30,
@@ -27,7 +26,7 @@ class LeftDrawer extends StatelessWidget {
                 ),
                 Padding(padding: EdgeInsets.all(10)),
                 Text(
-                  "Cari Buku yang Anda Butuhkan!",
+                  "Cari Kaos yang Anda Butuhkan!",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 15,
@@ -58,18 +57,18 @@ class LeftDrawer extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => const AddItemForm()));
             },
           ),
-          ListTile(
-            leading: const Icon(Icons.shopping_bag_outlined),
-            title: const Text("Lihat Item"),
+          // ListTile(
+          //   leading: const Icon(Icons.shopping_bag_outlined),
+          //   title: const Text("Lihat Item"),
 
-            // ketika diklik akan ke list item
-            onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const ItemPage()));
-            },
-          ),
+          //   // ketika diklik akan ke list item
+          //   onTap: () {
+          //     Navigator.push(
+          //         context,
+          //         MaterialPageRoute(
+          //             builder: (context) => const ItemPage()));
+          //   },
+          // ),
           ListTile(
             leading: const Icon(Icons.shopping_basket),
             title: const Text('Daftar Produk'),

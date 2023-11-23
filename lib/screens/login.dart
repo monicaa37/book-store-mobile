@@ -1,5 +1,5 @@
 import 'package:book_store/screens/menu.dart';
-import 'package:book_store/screens/menu.dart';
+import 'package:book_store/screens/register.dart';
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
@@ -109,6 +109,19 @@ class _LoginPageState extends State<LoginPage> {
                             },
                             child: const Text('Login'),
                         ),
+
+                        // penambahan bonus register 
+                        const SizedBox(height: 24.0),
+
+
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pushReplacement(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => RegistrationPage()),
+                                    );
+                          },
+                          child: const Text("Register"))
                     ],
                 ),
             ),

@@ -9,7 +9,7 @@ class MyHomePage extends StatelessWidget {
 
   final List<ShopItem> items = [
     ShopItem("Lihat Item", Icons.checklist, Color.fromARGB(255, 244, 163, 63)),
-    ShopItem("Daftar Produk", Icons.add_shopping_cart,Color.fromARGB(255, 239, 124, 191)),
+    // ShopItem("Daftar Produk", Icons.add_shopping_cart,Color.fromARGB(255, 239, 124, 191)),
     ShopItem("Tambah Item", Icons.add_shopping_cart, Colors.lightGreen),
     ShopItem("Logout", Icons.logout, Colors.lightBlue),
   ];
